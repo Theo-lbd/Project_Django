@@ -10,5 +10,6 @@ urlpatterns = [
     path("all/", views.all_questions, name="all_questions"),
     path("<int:question_id>/frequency/", views.frequency, name="frequency"),
     path("statistics/", views.statistics, name="statistics"),
+    path('create/', views.create_question, name='create_question'),
 
 ]

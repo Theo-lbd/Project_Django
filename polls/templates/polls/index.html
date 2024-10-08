@@ -14,6 +14,7 @@
                 </li>
             {% endfor %}
         </ul>
+    <a href="{% url 'polls:create_question' %}">Créer un nouveau sondage</a>
     {% else %}
     <p>No polls are available.</p>
 {% endif %}
