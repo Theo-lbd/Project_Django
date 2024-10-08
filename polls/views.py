@@ -46,3 +46,9 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse("polls:results", args=(question.id,)))
+
+
+def all_questions(request):
+    all_questions_list = Question.objects.all()  # Récupérer tous les sondages
+    context = {"all_questions_list": all_questions_list}
+    return render(request, "polls/all_questions.html", context)
