@@ -5,14 +5,15 @@
     <title>all questions</title>
 </head>
 <body>
-    <h1>Liste de tous les sondages</h1>
-    <ul>
-        {% for question in all_questions_list %}
-            <li>
-                <a href="/polls/{{ question.id }}/">{{ question.question_text }}</a> (ID: {{ question.id }})
-            </li>
-        {% endfor %}
-    </ul>
-
+    <h1>Tous les sondages</h1>
+        <ul>
+            {% for question in all_questions_list %}
+                <li>
+                    <a href="{% url 'polls:frequency' question.id %}">
+                        {{ question.id }} - {{ question.question_text }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
 </body>
 </html>

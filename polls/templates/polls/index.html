@@ -7,15 +7,16 @@
     <h1>Liste des derniers sondages</h1>
     {% if latest_question_list %}
         <ul>
-        {% for question in latest_question_list %}
-            <li>
-                <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a> -
-                Publiée le {{ question.pub_date|date:"F j, Y" }}
-            </li>
-        {% endfor %}
+            {% for question in latest_question_list %}
+                <li>
+                    <a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a> -
+                    Publiée le {{ question.pub_date|date:"F j, Y" }}
+                </li>
+            {% endfor %}
         </ul>
     {% else %}
-        <p>Aucun sondage disponible.</p>
-    {% endif %}
+    <p>No polls are available.</p>
+{% endif %}
+
 </body>
 </html>
