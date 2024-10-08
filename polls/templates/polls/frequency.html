@@ -1,0 +1,14 @@
+<h1>Résultats pour : {{ question.question_text }}</h1>
+<ul>
+    {% for choice in choices %}
+        <li>
+            {{ choice.choice_text }}: {{ choice.votes }} votes
+            {% if total_votes > 0 %}
+                ({{ choice.percentage|floatformat:2 }} %)
+            {% else %}
+                (0 votes)
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+<p>Total des votes : {{ total_votes }}</p>
