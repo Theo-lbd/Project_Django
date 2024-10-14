@@ -3,7 +3,7 @@ from django.db.models import Sum, Count, Avg, Max
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse
 from django.views import generic
-from .forms import QuestionForm
+from .forms import QuestionForm, ChoiceFormSet
 from .models import Choice, Question
 from django.utils import timezone
 
@@ -23,7 +23,8 @@ class IndexView(generic.ListView):
 
 
 class DetailView(generic.DetailView):
-    ...
+    model = Question
+    template_name = "polls/detail.html"
 
     def get_queryset(self):
         """
@@ -128,9 +129,17 @@ def statistics(request):
 def create_question(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
-        if form.is_valid():
-            form.save()
+        formset = ChoiceFormSet(request.POST)
+        if form.is_valid() and formset.is_valid():
+            question = form.save()
+            choices = formset.save(commit=False)
+            for choice in choices:
+                choice.question = question
+                choice.save()
             return redirect('polls:index')
     else:
         form = QuestionForm()
-    return render(request, 'polls/create_question.html', {'form': form})
+        formset = ChoiceFormSet()
+    return render(request, 'polls/create_question.html', {'form': form, 'formset': formset})
+
+

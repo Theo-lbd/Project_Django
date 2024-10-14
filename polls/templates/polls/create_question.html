@@ -5,12 +5,18 @@
     <title>create question</title>
 </head>
 <body>
-    <h1>Créer un nouveau sondage</h1>
+    <h1>Créer une nouvelle question</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Créer la question</button>
+        {{ formset.management_form }}
+        {% for subform in formset %}
+            {{ subform.as_p }}
+        {% endfor %}
+        <button type="submit">Enregistrer</button>
     </form>
+
+
 
     <a href="{% url 'polls:index' %}">Retour à la liste des sondages</a>
 
