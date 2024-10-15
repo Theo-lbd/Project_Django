@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon site de sondage{% endblock %}</title>
+</head>
+<body>
+    <header>
+        {% load static %}
+        {% block header %}
+        <img src="{% static 'C:\Users\LabadieT\OneDrive - Facylities Multi Services\Bureau\Python\Exercices_python\pythonProjectDjango\mysite\polls\static\polls\images\background.png' %}"
+             alt="Bandeau du site" width="100%">
+        {% endblock %}
+    </header>
+
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mon site de sondage</p>
+    </footer>
+</body>
+</html>
