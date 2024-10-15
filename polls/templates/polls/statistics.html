@@ -1,31 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% extends 'base.html' %}
-    {% load static %}
-    <meta charset="UTF-8">
-    <title>statistics</title>
-</head>
-<body>
-<h1>Statistiques des Sondages</h1>
+{% extends 'base.html' %}
+{% load static %}
 
-<p><strong>Nombre total de sondages :</strong> {{ total_polls }}</p>
-<p><strong>Nombre total de choix possibles :</strong> {{ total_choices }}</p>
-<p><strong>Nombre total de votes :</strong> {{ total_votes }}</p>
-<p><strong>Moyenne du nombre de votes par sondage :</strong> {{ avg_votes_per_poll|floatformat:2 }}</p>
+{% block title %}Résultats détaillé{% endblock %}
 
-<h2>Dernière question enregistrée</h2>
-<p>{{ latest_question.question_text }} (publiée le {{ latest_question.pub_date }})</p>
+{% block main %}
 
-{% if most_popular_question %}
-    <h2>Question la plus populaire</h2>
-    <p>{{ most_popular_question.question_text }} avec {{ most_popular_question.total_votes }} votes</p>
-{% endif %}
+    <h1>Statistiques des Sondages</h1>
 
-{% if least_popular_question %}
-    <h2>Question la moins populaire</h2>
-    <p>{{ least_popular_question.question_text }} avec {{ least_popular_question.total_votes }} votes</p>
-{% endif %}
+    <p><strong>Nombre total de sondages :</strong> {{ total_polls }}</p>
+    <p><strong>Nombre total de choix possibles :</strong> {{ total_choices }}</p>
+    <p><strong>Nombre total de votes :</strong> {{ total_votes }}</p>
+    <p><strong>Moyenne du nombre de votes par sondage :</strong> {{ avg_votes_per_poll|floatformat:2 }}</p>
 
-</body>
-</html>
+    <h2>Dernière question enregistrée</h2>
+    <p>{{ latest_question.question_text }} (publiée le {{ latest_question.pub_date }})</p>
+
+    {% if most_popular_question %}
+        <h2>Question la plus populaire</h2>
+        <p>{{ most_popular_question.question_text }} avec {{ most_popular_question.total_votes }} votes</p>
+    {% endif %}
+
+    {% if least_popular_question %}
+        <h2>Question la moins populaire</h2>
+        <p>{{ least_popular_question.question_text }} avec {{ least_popular_question.total_votes }} votes</p>
+    {% endif %}
+{% endblock %}

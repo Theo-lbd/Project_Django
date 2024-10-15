@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Sondages</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Liste des derniers sondages{% endblock %}
+
+{% block main %}
     <h1>Liste des derniers sondages</h1>
     {% if latest_question_list %}
         <ul>
@@ -20,6 +18,5 @@
     {% else %}
     <p>No polls are available.</p>
 {% endif %}
+{% endblock %}
 
-</body>
-</html>
