@@ -2,18 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>all questions</title>
+    <title>Tous les sondages</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'polls/style.css' %}">
 </head>
 <body>
     <h1>Tous les sondages</h1>
-        <ul>
-            {% for question in all_questions_list %}
-                <li>
-                    <a href="{% url 'polls:frequency' question.id %}">
-                        {{ question.id }} - {{ question.question_text }}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
+    <ul>
+        {% for question in all_questions_list %}
+            <li>
+                <a href="{% url 'polls:frequency' question.id %}">
+                    {{ question.id }} - {{ question.question_text }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

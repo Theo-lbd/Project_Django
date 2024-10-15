@@ -1,24 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>create question</title>
-</head>
-<body>
-    <h1>Créer une nouvelle question</h1>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Ajouter une nouvelle question{% endblock %}
+
+{% block header %}
+    <img src="{% static 'images/add-question-banner.jpg' %}" alt="Ajouter une question" width="100%">
+{% endblock %}
+
+{% block main %}
+    <h1>Ajouter une nouvelle question</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
+
+        <h3>Choix</h3>
         {{ formset.management_form }}
-        {% for subform in formset %}
-            {{ subform.as_p }}
-        {% endfor %}
+        <table>
+            {% for form in formset %}
+            <tr>
+                <td>{{ form.choice_text.label_tag }}: {{ form.choice_text }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
         <button type="submit">Enregistrer</button>
     </form>
-
-
-
-    <a href="{% url 'polls:index' %}">Retour à la liste des sondages</a>
-
-</body>
-</html>
+{% endblock %}
