@@ -6,7 +6,8 @@ from django.views import generic
 from .forms import QuestionForm, ChoiceFormSet
 from .models import Choice, Question
 from django.utils import timezone
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
 
 class IndexView(generic.ListView):
     template_name = "polls/index.html"
@@ -80,6 +81,7 @@ def frequency(request, question_id):
     }
     return render(request, "polls/frequency.html", context)
 
+
 def statistics(request):
     # Nombre total de sondages enregistrés
     total_polls = Question.objects.count()
@@ -126,6 +128,7 @@ def statistics(request):
     return render(request, "polls/statistics.html", context)
 
 
+@login_required(login_url='/login/')
 def create_question(request):
     if request.method == 'POST':
         form = QuestionForm(request.POST)
@@ -141,5 +144,3 @@ def create_question(request):
         form = QuestionForm()
         formset = ChoiceFormSet()
     return render(request, 'polls/create_question.html', {'form': form, 'formset': formset})
-
-
