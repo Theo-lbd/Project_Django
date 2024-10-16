@@ -9,8 +9,16 @@
     <header>
         {% load static %}
         {% block header %}
-        <img src="{% static 'mysite\polls\static\polls\images\background.png' %}"
-             alt="Bandeau du site" width="100%">
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                    <li>Bienvenue, {{ user.username }}</li>
+                    <li><a href="{% url 'polls:logout' %}">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{% url 'polls:login' %}">Connexion</a></li>
+                {% endif %}
+            </ul>
+        </nav>
         {% endblock %}
     </header>
 
